@@ -1,8 +1,8 @@
-# Angular Todo App
+# Angular2 Material Sage App
 
-This repo accompanies a series of articles on [building an Angular CRUD app from the ground up](https://www.sitepoint.com/series/build-an-angular-crud-app-from-the-ground-up/).
- +
- +Each article in this series has a corresponding tag in the repository so you can switch back and forth between the different states of the application.
+This repo is modeled on a series of articles on [building an Angular CRUD app from the ground up](https://www.sitepoint.com/series/build-an-angular-crud-app-from-the-ground-up/).
+
+Each article in this series has a corresponding tag in the repository so you can switch back and forth between the different states of the application.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
 
