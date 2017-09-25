@@ -1,0 +1,36 @@
+<md-toolbar color="primary">
+  <button md-button routerLink="/">
+    <md-icon>home</md-icon> 
+    {{title}}
+  </button>
+
+  <span class="fill-remaining-space"></span>
+  <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+    <button md-button routerLink="/login">Login</button>
+    <button md-button routerLink="/register">Register</button>
+    <button md-button routerLink="/editor">Editor</button>
+  </div>
+  <button md-button [md-menu-trigger-for]="menu" fxHide="false" fxHide.gt-sm>
+    <md-icon>menu</md-icon>
+  </button>
+
+</md-toolbar>
+<md-menu x-position="before" #menu="mdMenu">
+  <button md-menu-item routerLink="/login">Login</button>
+  <button md-menu-item routerLink="/register">Register</button>
+  <button md-menu-item routerLink="/editor">Editor</button>
+</md-menu>
+<router-outlet></router-outlet>
+
+<!-- section class="userapp">
+  <app-user-list-header (add)="onAddUser($event)">
+  </app-user-list-header>
+  <app-user-list
+    [users]="users"
+    (toggleComplete)="onToggleUserComplete($event)"
+    (remove)="onRemoveUser($event)">
+  </app-user-list>
+  <app-user-list-footer
+    [users]="users">
+  </app-user-list-footer>
+</section -->

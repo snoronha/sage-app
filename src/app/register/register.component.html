@@ -1,0 +1,32 @@
+<div fxLayout fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+  <div fxFlex="15%"></div>
+  <div fxFlex="70%">
+    <form>
+      <p>&nbsp;</p>
+      <p>
+        <md-form-field fxFlex="100%"><input mdInput placeholder="Email Address"></md-form-field>
+      </p>
+      <p>
+        <md-form-field fxFlex="100%"><input mdInput placeholder="Password" type="password"></md-form-field>
+      </p>
+      <p>
+        <md-form-field fxFlex="100%"><input mdInput placeholder="Repeat Password" type="password"></md-form-field>
+      </p>
+
+      <p>&nbsp;</p>
+      <p>
+        <button md-raised-button
+                color="primary"
+                routerLink="/login"
+                fxFlex="40%" fxFlexOffset="30%" fxLayoutAlign="center">
+          Register
+        </button>
+      </p>
+      <!-- md-form-field>
+        <input mdInput #postalCode maxlength="5" placeholder="Postal Code" value="94043">
+        <md-hint align="end">{{postalCode.value.length}} / 5</md-hint>
+      </md-form-field -->
+    </form>
+  </div>
+  <div fxFlex="15%"></div>
+</div>

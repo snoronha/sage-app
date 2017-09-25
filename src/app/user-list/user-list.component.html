@@ -1,0 +1,10 @@
+<section class="main" *ngIf="users.length > 0">
+  <ul class="user-list">
+    <li *ngFor="let user of users" [class.completed]="user.complete">
+      <app-user-list-item
+        [user]="user"
+        (toggleComplete)="onToggleUserComplete($event)"
+        (remove)="onRemoveUser($event)"></app-user-list-item>
+    </li>
+  </ul>
+</section>
