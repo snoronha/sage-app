@@ -13,6 +13,6 @@ export class LoginComponent implements OnInit {
     ngOnInit() { }
 
     onSubmit(email_address: string, password: string) {
-        console.log("email_address: ", email_address, "password: ", password);
+        console.log('email_address: ', email_address, 'password: ', password);
     }
 }
