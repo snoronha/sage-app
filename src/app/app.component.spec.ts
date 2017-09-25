@@ -6,32 +6,47 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { UserDataService } from './user-data.service';
 import { ApiService } from './api.service';
 import { ApiMockService } from './api-mock.service';
+import {
+    MdButtonModule,
+    MdCheckboxModule,
+    MdMenuModule,
+    MdToolbarModule,
+    MdIconModule,
+    MdInputModule,
+} from '@angular/material';
+
 
 describe('AppComponent', () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        FormsModule
-      ],
-      declarations: [
-        AppComponent
-      ],
-      providers: [
-        UserDataService,
-        {
-          provide: ApiService,
-          useClass: ApiMockService
-        }
-      ],
-      schemas: [
-        NO_ERRORS_SCHEMA
-      ]
-    }).compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            imports: [
+                FormsModule,
+                MdButtonModule,
+                MdCheckboxModule,
+                MdMenuModule,
+                MdToolbarModule,
+                MdIconModule,
+                MdInputModule,
+            ],
+            declarations: [
+                AppComponent
+            ],
+            providers: [
+                UserDataService,
+                {
+                    provide: ApiService,
+                    useClass: ApiMockService
+                }
+            ],
+            schemas: [
+                NO_ERRORS_SCHEMA
+            ]
+        }).compileComponents();
+    }));
 
-  it('should create the app', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
-  }));
+    it('should create the app', async(() => {
+        const fixture = TestBed.createComponent(AppComponent);
+        const app = fixture.debugElement.componentInstance;
+        expect(app).toBeTruthy();
+    }));
 });
