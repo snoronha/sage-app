@@ -64,6 +64,7 @@ export class DiagramEditorComponent implements OnInit {
                 new go.Binding("text").makeTwoWay())
              );
 
+        /*
         this.diagram.nodeTemplate.selectionAdornmentTemplate =
             $(go.Adornment, "Spot",
               $(go.Panel, "Auto",
@@ -79,6 +80,7 @@ export class DiagramEditorComponent implements OnInit {
                 $(go.Shape, "PlusLine", { width: 6, height: 6 })
                ) // end button
              ); // end Adornment
+        */
 
         this.diagram.linkTemplate =
             $(go.Link,  // the whole link panel
