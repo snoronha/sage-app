@@ -1,23 +1,32 @@
 <div fxLayout fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
   <div fxFlex="15%"></div>
   <div fxFlex="70%">
-    <form>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate>
       <p>&nbsp;</p>
+      <p>Form value: {{ registerForm.value | json }}</p>
+      <p>Form status: {{ registerForm.status | json }}</p>
       <p>
-        <md-form-field fxFlex="100%"><input mdInput placeholder="Email Address"></md-form-field>
+        <md-form-field fxFlex="100%">
+          <input mdInput placeholder="Email Address" formControlName="email_address">
+        </md-form-field>
       </p>
       <p>
-        <md-form-field fxFlex="100%"><input mdInput placeholder="Password" type="password"></md-form-field>
+        <md-form-field fxFlex="100%">
+          <input mdInput placeholder="Password" type="password" formControlName="password">
+        </md-form-field>
       </p>
       <p>
-        <md-form-field fxFlex="100%"><input mdInput placeholder="Repeat Password" type="password"></md-form-field>
+        <md-form-field fxFlex="100%">
+          <input mdInput placeholder="Repeat Password" type="password" formControlName="repeat_password">
+        </md-form-field>
       </p>
 
       <p>&nbsp;</p>
       <p>
         <button md-raised-button
                 color="primary"
-                routerLink="/login"
+                type="submit"
+                [disabled]="registerForm.pristine"
                 fxFlex="40%" fxFlexOffset="30%" fxLayoutAlign="center">
           Register
         </button>

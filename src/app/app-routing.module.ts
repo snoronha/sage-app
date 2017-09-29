@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -10,11 +9,16 @@ const routes: Routes = [
     { path: '', redirectTo: 'editor', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
-    { path: 'editor', component: DiagramEditorComponent },
+    { path: 'editor',
+      children: [
+          { path: '', component: DiagramEditorComponent },
+          { path: ':id', component: DiagramEditorComponent }
+      ]
+    },
     { path: 'users', // component: UserListComponent,
       children: [
-          // { path: '', component: 'UserListComponent' },
-          // { path: ':id', component: 'UserPageComponent' }
+          // { path: '', component: UserListComponent },
+          // { path: ':id', component: UserPageComponent }
       ]
     }
 ];
@@ -22,11 +26,9 @@ const routes: Routes = [
 @NgModule({
     imports: [
         RouterModule.forRoot(routes),
-        // AppComponent,
     ],
     exports: [
         RouterModule,
-        // AppComponent,
     ],
     providers: []
 })

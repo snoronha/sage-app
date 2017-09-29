@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { FormsModule } from '@angular/forms'; // NgModel lives here
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // NgModel lives here
 import { HttpModule } from '@angular/http';
 import {
     MdButtonModule,
@@ -24,8 +24,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { DiagramEditorComponent } from './diagram-editor/diagram-editor.component';
+import { User } from './data-model';
 
 @NgModule({
+    imports: [
+        AppRoutingModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+        FlexLayoutModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpModule,
+        MdButtonModule, MdCheckboxModule, MdMenuModule, MdToolbarModule, MdIconModule, MdInputModule,
+    ],
     declarations: [
         AppComponent,
         UserListHeaderComponent,
@@ -36,16 +47,12 @@ import { DiagramEditorComponent } from './diagram-editor/diagram-editor.componen
         RegisterComponent,
         DiagramEditorComponent,
     ],
-    imports: [
-        AppRoutingModule,
-        BrowserModule,
-        BrowserAnimationsModule,
-        FlexLayoutModule,
-        FormsModule,
-        HttpModule,
-        MdButtonModule, MdCheckboxModule, MdMenuModule, MdToolbarModule, MdIconModule, MdInputModule,
+    providers: [
+        UserDataService,
+        ApiService,
     ],
-    providers: [UserDataService, ApiService],
-    bootstrap: [AppComponent]
+    bootstrap: [
+        AppComponent,
+    ]
 })
 export class AppModule { }
