@@ -6,21 +6,26 @@
       <p>Form value: {{ registerForm.value | json }}</p>
       <p>Form status: {{ registerForm.status | json }}</p>
       <p>
-        <md-form-field fxFlex="100%">
+        <md-form-field fxFlex="100">
           <input mdInput placeholder="Email Address" formControlName="email_address">
         </md-form-field>
       </p>
       <p>
-        <md-form-field fxFlex="100%">
+        <md-form-field fxFlex="45">
+          <input mdInput placeholder="First Name" formControlName="first_name">
+        </md-form-field>
+        <md-form-field fxFlex="45" fxFlexOffset="10">
+          <input mdInput placeholder="Last Name" formControlName="last_name">
+        </md-form-field>
+      </p>      
+      <p>
+        <md-form-field fxFlex="45">
           <input mdInput placeholder="Password" type="password" formControlName="password">
         </md-form-field>
-      </p>
-      <p>
-        <md-form-field fxFlex="100%">
+        <md-form-field fxFlex="45" fxFlexOffset="10">
           <input mdInput placeholder="Repeat Password" type="password" formControlName="repeat_password">
         </md-form-field>
       </p>
-
       <p>&nbsp;</p>
       <p>
         <button md-raised-button

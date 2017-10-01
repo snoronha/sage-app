@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'environments/environment';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers } from '@angular/http';
 import { User } from './user';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/share';
 import 'rxjs/add/observable/throw';
 
 const API_URL = environment.apiUrl;
@@ -12,12 +13,13 @@ const API_URL = environment.apiUrl;
 @Injectable()
 export class ApiService {
 
-    constructor(private http: Http) { }
+    constructor(private _http: Http) { }
 
     //------ Start /users endpoints ------//
+    /*
     public getAllUsers(): Observable<User[]> {
-        return this.http
-            .get(API_URL + '/users')
+        return this._http
+            .get(API_URL + '/api/v1/users/')
             .map(response => {
                 const users = response.json();
                 return users.map((user) => new User(user));
@@ -26,17 +28,32 @@ export class ApiService {
     }
 
     public createUser(user: User): Observable<User> {
-        return this.http
-            .post(API_URL + '/users', user)
+        return this._http
+            .post(API_URL + '/api/v1/users/', user)
             .map(response => {
                 return new User(response.json());
             })
             .catch(this.handleError);
     }
+    */
+
+    public getAllUsers(): Observable<any> {
+        return this._http
+            .get(API_URL + '/api/v1/users/')
+            .map(this.extractBody)
+            .catch(this.handleError);
+    }
+
+    public createUser(user: any): Observable<any> {
+        return this._http
+            .post(API_URL + '/api/v1/users/', user)
+            .map(this.extractBody)
+            .catch(this.handleError);
+    }
 
     public getUserById(userId: number): Observable<User> {
-        return this.http
-            .get(API_URL + '/users/' + userId)
+        return this._http
+            .get(API_URL + '/api/v1/users/id/' + userId)
             .map(response => {
                 return new User(response.json());
             })
@@ -44,8 +61,8 @@ export class ApiService {
     }
 
     public updateUser(user: User): Observable<User> {
-        return this.http
-            .put(API_URL + '/users/' + user.id, user)
+        return this._http
+            .put(API_URL + '/api/v1/users/id/' + user.id, user)
             .map(response => {
                 return new User(response.json());
             })
@@ -53,8 +70,8 @@ export class ApiService {
     }
 
     public deleteUserById(userId: number): Observable<null> {
-        return this.http
-            .delete(API_URL + '/users/' + userId)
+        return this._http
+            .delete(API_URL + '/api/v1/users/id/' + userId)
             .map(response => null)
             .catch(this.handleError);
     }
@@ -62,7 +79,7 @@ export class ApiService {
     //------ Start /diagrams endpoints ------//
     /*
     public getAllUsers(): Observable<User[]> {
-        return this.http
+        return this._http
             .get(API_URL + '/users')
             .map(response => {
                 const users = response.json();
@@ -72,7 +89,7 @@ export class ApiService {
     }
 
     public createUser(user: User): Observable<User> {
-        return this.http
+        return this._http
             .post(API_URL + '/users', user)
             .map(response => {
                 return new User(response.json());
@@ -81,7 +98,7 @@ export class ApiService {
     }
 
     public getUserById(userId: number): Observable<User> {
-        return this.http
+        return this._http
             .get(API_URL + '/users/' + userId)
             .map(response => {
                 return new User(response.json());
@@ -90,7 +107,7 @@ export class ApiService {
     }
 
     public updateUser(user: User): Observable<User> {
-        return this.http
+        return this._http
             .put(API_URL + '/users/' + user.id, user)
             .map(response => {
                 return new User(response.json());
@@ -99,12 +116,17 @@ export class ApiService {
     }
 
     public deleteUserById(userId: number): Observable<null> {
-        return this.http
+        return this._http
             .delete(API_URL + '/users/' + userId)
             .map(response => null)
             .catch(this.handleError);
     }
     */
+
+    private extractBody(res: Response) {
+        let body = res.json();
+        return body || {};
+    }
 
     private handleError (error: Response | any) {
         console.error('ApiService::handleError', error);

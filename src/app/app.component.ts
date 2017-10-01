@@ -30,6 +30,7 @@ export class AppComponent implements OnInit {
         */
     }
 
+    /*
     onAddUser(user) {
         this.userDataService
             .addUser(user)
@@ -39,6 +40,7 @@ export class AppComponent implements OnInit {
                 }
             );
     }
+    */
 
     onToggleUserComplete(user) {
         this.userDataService
