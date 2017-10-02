@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from '../api.service';
 import { Observable } from 'rxjs/Observable';
 import { User } from '../data-model';
@@ -14,8 +15,9 @@ export class RegisterComponent implements OnInit {
     registerForm: FormGroup; // <--- registerForm is of type FormGroup
     @Input() user: User;
     
-    constructor(private fb: FormBuilder, private api: ApiService) { // inject FormBuilder, ApiService
+    constructor(private fb: FormBuilder, private api: ApiService, private router: Router) { // inject FormBuilder, ApiService
         this.createForm();
+        this.router = router;
     }
 
     ngOnInit() {
@@ -25,19 +27,27 @@ export class RegisterComponent implements OnInit {
 
     createForm() {
         this.registerForm = this.fb.group({
-            email_address:   ['', Validators.required], // <--- FormControl called "email_address"
+            email_address:   new FormControl('', [Validators.required, Validators.email]),
             first_name:      [''],
             last_name:       [''],
-            password:        ['', Validators.required],
-            repeat_password: ['', Validators.required],
+            password:        new FormControl('', [Validators.required, Validators.minLength(6)]),
+            repeat_password: new FormControl('', [Validators.required, Validators.minLength(6)]),
         });
     }
 
     onSubmit() {
         this.user = this.prepareSaveUser();
         var observable = this.api.createUser(this.user);
-        observable.subscribe(value => console.log("NEW USER: ", value));
+        observable.subscribe(response => this.handleSubmitResponse(response));
         // this.ngOnChanges();
+    }
+
+    handleSubmitResponse(response: any) {
+        if (response.status >= 200 && response.status < 300) {
+            this.router.navigate(['/editor'], {}); // { relativeTo: this.route });
+        } else {
+            this.router.navigate(['/editor'], {}); // { relativeTo: this.route });
+        }
     }
 
     prepareSaveUser(): User {
@@ -63,4 +73,11 @@ export class RegisterComponent implements OnInit {
             // repeat_password: formModel.repeat_password as string,
         });
     }
+
+    // No idea why 'any' is needed. Example says `FormControl' should work
+    get email_address()   { return this.registerForm.get('email_address'); }
+    get first_name()      { return this.registerForm.get('first_name'); }
+    get last_name()       { return this.registerForm.get('last_name'); }
+    get password()        { return this.registerForm.get('password'); }
+    get repeat_password() { return this.registerForm.get('repeat_password'); }
 }

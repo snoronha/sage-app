@@ -1,13 +1,20 @@
 <div fxLayout fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
   <div fxFlex="15%"></div>
   <div fxFlex="70%">
-    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
       <p>&nbsp;</p>
       <p>Form value: {{ registerForm.value | json }}</p>
       <p>Form status: {{ registerForm.status | json }}</p>
       <p>
         <md-form-field fxFlex="100">
-          <input mdInput placeholder="Email Address" formControlName="email_address">
+          <input mdInput placeholder="Email Address" type="email" formControlName="email_address">
+          <md-error *ngIf="email_address.invalid && (email_address.dirty || email_address.touched)">
+            <md-error *ngIf="email_address.errors.required">Email Address is required</md-error>
+            <md-error *ngIf="!email_address.errors.required && email_address.errors.email">
+              Please enter a valid Email Address
+            </md-error>
+          </md-error>
+
         </md-form-field>
       </p>
       <p>
@@ -21,9 +28,17 @@
       <p>
         <md-form-field fxFlex="45">
           <input mdInput placeholder="Password" type="password" formControlName="password">
+          <md-error *ngIf="password.invalid && (password.dirty || password.touched)">
+            <md-error *ngIf="password.errors.required">Password is required</md-error>
+            <md-error *ngIf="password.errors.minlength">Password must be at least 6 characters</md-error>
+          </md-error>
         </md-form-field>
         <md-form-field fxFlex="45" fxFlexOffset="10">
           <input mdInput placeholder="Repeat Password" type="password" formControlName="repeat_password">
+          <md-error *ngIf="repeat_password.invalid && (repeat_password.dirty || repeat_password.touched)">
+            <md-error *ngIf="repeat_password.errors.required">Repeat Password is required</md-error>
+            <md-error *ngIf="repeat_password.errors.minlength">Repeat Password must be at least 6 characters</md-error>
+          </md-error>
         </md-form-field>
       </p>
       <p>&nbsp;</p>
@@ -31,7 +46,7 @@
         <button md-raised-button
                 color="primary"
                 type="submit"
-                [disabled]="registerForm.pristine"
+                [disabled]="!registerForm.valid"
                 fxFlex="40%" fxFlexOffset="30%" fxLayoutAlign="center">
           Register
         </button>
