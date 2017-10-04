@@ -76,6 +76,13 @@ export class ApiService {
             .catch(this.handleError);
     }
 
+    public getFastlinkCredentials(): Observable<any> {
+        return this._http
+            .get(API_URL + '/api/v1/users/GetFastlinkCredentials')
+            .map(this.extractBody)
+            .catch(this.handleError);
+    }
+
     /*------ Start /diagrams endpoints ------*/
     /*
     public getAllUsers(): Observable<User[]> {

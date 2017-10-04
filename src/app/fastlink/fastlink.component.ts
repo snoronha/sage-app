@@ -9,7 +9,7 @@ import { Observable } from 'rxjs/Observable';
     styleUrls: ['./fastlink.component.css']
 })
 export class FastlinkComponent implements OnInit {
-
+    loaded: boolean;
     fastlinkForm: FormGroup;
     constructor(private fb: FormBuilder, private api: ApiService) {
         this.createForm();
@@ -18,13 +18,23 @@ export class FastlinkComponent implements OnInit {
     createForm() {
         this.fastlinkForm = this.fb.group({
             app:        new FormControl('10003600', [Validators.required]),
-            rsession:   [''],
-            token:      [''],
+            rsession:   new FormControl('', [Validators.required]),
+            token:      new FormControl('', [Validators.required]),
             requestReq: new FormControl('true', [Validators.required]),
         });
     }
 
-    ngOnInit() { }
+    ngOnInit() {
+        this.loaded = false;
+        const observable = this.api.getFastlinkCredentials();
+        observable.subscribe((response) => {
+            if (response.status >= 200 && response.status < 300) {
+                this.loaded = true;
+                (<HTMLInputElement>document.getElementById('rsession')).value = response.message.user_session;
+                (<HTMLInputElement>document.getElementById('token')).value = response.message.fastlink_token;
+            }
+        });
+    }
 
     onSubmit() {
         // console.log("app: ", this.fastlinkForm.value);

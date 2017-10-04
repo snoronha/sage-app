@@ -5,26 +5,17 @@
           method="POST">
       <p>&nbsp;</p>
       <p>
-        <input placeholder="AppId" type="hidden" name="app" value="10003600">
-      </p>
-      <p>
-        <md-form-field fxFlex="100">
-          <input mdInput placeholder="UserSession" name="rsession">
-        </md-form-field>
-      </p>
-      <p>
-        <md-form-field fxFlex="100">
-          <input mdInput placeholder="Fastlink Token" name="token">
-        </md-form-field>
-      </p>      
-      <p>
-        <input placeholder="RequestReq" name="requestReq" type="hidden" value="true">
+        <input name="app" type="hidden" value="10003600">
+        <input name="rsession" type="hidden" id="rsession"><br/>
+        <input name="token" type="hidden" id="token"><br/>
+        <input name="requestReq" type="hidden" value="true">
       </p>
       <p>&nbsp;</p>
       <p>
         <button md-raised-button
                 color="primary"
                 type="submit"
+                [disabled]="!loaded"
                 fxFlex="40%" fxFlexOffset="30%" fxLayoutAlign="center">
           Launch FastLink
         </button>
