@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
 
     onSubmit() {
         const formModel = this.homeForm.value; // formModel.url
-        console.log("URL: ", formModel.url);
+        console.log('URL: ', formModel.url);
     }
 
     get url() { return this.homeForm.value.url as string; }

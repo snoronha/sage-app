@@ -1,6 +1,7 @@
 import { TestBed, async } from '@angular/core/testing';
 
 import { FormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { UserDataService } from './user-data.service';
@@ -27,6 +28,7 @@ describe('AppComponent', () => {
                 MdToolbarModule,
                 MdIconModule,
                 MdInputModule,
+                RouterTestingModule,
             ],
             declarations: [
                 AppComponent
@@ -36,7 +38,7 @@ describe('AppComponent', () => {
                 {
                     provide: ApiService,
                     useClass: ApiMockService
-                }
+                },
             ],
             schemas: [
                 NO_ERRORS_SCHEMA

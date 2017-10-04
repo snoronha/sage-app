@@ -15,7 +15,7 @@ export class ApiService {
 
     constructor(private _http: Http) { }
 
-    //------ Start /users endpoints ------//
+    /*------ Start /users endpoints ------*/
     /*
     public getAllUsers(): Observable<User[]> {
         return this._http
@@ -76,7 +76,7 @@ export class ApiService {
             .catch(this.handleError);
     }
 
-    //------ Start /diagrams endpoints ------//
+    /*------ Start /diagrams endpoints ------*/
     /*
     public getAllUsers(): Observable<User[]> {
         return this._http
@@ -124,7 +124,7 @@ export class ApiService {
     */
 
     private extractBody(res: Response) {
-        let body = res.json();
+        const body = res.json();
         return body || {};
     }
 

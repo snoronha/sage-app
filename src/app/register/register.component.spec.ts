@@ -1,4 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { MockBackend } from '@angular/http/testing';
+import { Http, BaseRequestOptions, XHRBackend } from '@angular/http';
+import { ApiService } from '../api.service';
+import { RouterTestingModule } from '@angular/router/testing';
 import {
     MdInputModule,
 } from '@angular/material';
@@ -14,12 +19,27 @@ describe('RegisterComponent', () => {
             imports: [
                 BrowserAnimationsModule,
                 MdInputModule,
+                ReactiveFormsModule, FormsModule,
+                RouterTestingModule,
             ],
             declarations: [
                 RegisterComponent
-            ]
-        })
-            .compileComponents();
+            ],
+            providers: [
+                ApiService,
+                MockBackend,
+                BaseRequestOptions,
+                {
+                    provide: Http,
+                    deps: [MockBackend, BaseRequestOptions],
+                    useFactory:
+                    (backend: XHRBackend, defaultOptions: BaseRequestOptions) => {
+                        return new Http(backend, defaultOptions);
+                    }
+                }
+            ],
+        });
+        TestBed.compileComponents();
     }));
 
     beforeEach(() => {

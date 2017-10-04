@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from '../api.service';
@@ -10,11 +10,11 @@ import { User } from '../data-model';
     templateUrl: './register.component.html',
     styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnChanges {
 
     registerForm: FormGroup; // <--- registerForm is of type FormGroup
     @Input() user: User;
-    
+
     constructor(private fb: FormBuilder, private api: ApiService, private router: Router) { // inject FormBuilder, ApiService
         this.createForm();
         this.router = router;
@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
 
     onSubmit() {
         this.user = this.prepareSaveUser();
-        var observable = this.api.createUser(this.user);
+        const observable = this.api.createUser(this.user);
         observable.subscribe(response => this.handleSubmitResponse(response));
         // this.ngOnChanges();
     }

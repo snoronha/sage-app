@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
 
     users: User[] = [];
 
-    constructor(private userDataService: UserDataService, private  _router : Router) {
+    constructor(private userDataService: UserDataService, private  _router: Router) {
 
     }
 
