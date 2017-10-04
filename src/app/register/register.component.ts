@@ -44,9 +44,9 @@ export class RegisterComponent implements OnInit {
 
     handleSubmitResponse(response: any) {
         if (response.status >= 200 && response.status < 300) {
-            this.router.navigate(['/editor'], {}); // { relativeTo: this.route });
+            this.router.navigate(['/app/editor'], {});
         } else {
-            this.router.navigate(['/editor'], {}); // { relativeTo: this.route });
+            this.router.navigate(['/app/editor'], {});
         }
     }
 

@@ -7,6 +7,8 @@ import {
     MdButtonModule,
     MdCheckboxModule,
     MdMenuModule,
+    MdOptionModule,
+    MdSelectModule,
     MdToolbarModule,
     MdIconModule,
     MdInputModule,
@@ -25,6 +27,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { DiagramEditorComponent } from './diagram-editor/diagram-editor.component';
 import { User } from './data-model';
+import { HomeComponent } from './home/home.component';
+import { FastlinkComponent } from './fastlink/fastlink.component';
 
 @NgModule({
     imports: [
@@ -35,7 +39,8 @@ import { User } from './data-model';
         FormsModule,
         ReactiveFormsModule,
         HttpModule,
-        MdButtonModule, MdCheckboxModule, MdMenuModule, MdToolbarModule, MdIconModule, MdInputModule,
+        MdButtonModule, MdCheckboxModule, MdMenuModule, MdOptionModule,
+        MdSelectModule, MdToolbarModule, MdIconModule, MdInputModule,
     ],
     declarations: [
         AppComponent,
@@ -46,6 +51,8 @@ import { User } from './data-model';
         LoginComponent,
         RegisterComponent,
         DiagramEditorComponent,
+        HomeComponent,
+        FastlinkComponent,
     ],
     providers: [
         UserDataService,

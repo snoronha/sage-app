@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserDataService } from './user-data.service';
 import { User } from './user';
 import * as go from 'gojs';
@@ -13,9 +14,8 @@ export class AppComponent implements OnInit {
 
     users: User[] = [];
 
-    constructor(
-        private userDataService: UserDataService
-    ) {
+    constructor(private userDataService: UserDataService, private  _router : Router) {
+
     }
 
     public ngOnInit() {
