@@ -7,7 +7,8 @@
   <span class="fill-remaining-space"></span>
   <div fxLayout="row" fxShow="false" fxShow.gt-sm>
     <button md-button color="primary" routerLink="/editor">Editor</button>
-    <button md-button routerLink="/login">Login</button>
+    <button md-button *ngIf="!auth.isAuthenticated()" (click)="auth.login()">Log In</button>
+    <button md-button *ngIf="auth.isAuthenticated()"  (click)="auth.logout()">Log Out</button>
     <button md-button routerLink="/register">Register</button>
   </div>
   <button md-button [md-menu-trigger-for]="menu" fxHide="false" fxHide.gt-sm>
@@ -17,7 +18,8 @@
 </md-toolbar>
 <md-menu x-position="before" #menu="mdMenu">
   <button md-menu-item routerLink="/editor">Editor</button>
-  <button md-menu-item routerLink="/login">Login</button>
+  <button md-menu-item *ngIf="!auth.isAuthenticated()" (click)="auth.login()">Log In</button>
+  <button md-menu-item *ngIf="auth.isAuthenticated()"  (click)="auth.logout()">Log Out</button>
   <button md-menu-item routerLink="/register">Register</button>
 </md-menu>
 <router-outlet></router-outlet>

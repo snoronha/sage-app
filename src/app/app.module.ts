@@ -22,6 +22,7 @@ import { UserListHeaderComponent } from './user-list-header/user-list-header.com
 import { UserDataService } from './user-data.service';
 import { UserListItemComponent } from './user-list-item/user-list-item.component';
 import { ApiService } from './api.service';
+import { AuthService } from './auth/auth.service';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -57,6 +58,7 @@ import { FastlinkComponent } from './fastlink/fastlink.component';
     providers: [
         UserDataService,
         ApiService,
+        AuthService,
     ],
     bootstrap: [
         AppComponent,
