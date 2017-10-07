@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MockBackend } from '@angular/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { FormsModule, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Http, BaseRequestOptions, XHRBackend } from '@angular/http';
 import { ApiService } from '../api.service';
@@ -19,6 +20,7 @@ describe('FastlinkComponent', () => {
                 BrowserAnimationsModule,
                 MdInputModule,
                 ReactiveFormsModule, FormsModule,
+                RouterTestingModule,
             ],
             declarations: [
                 FastlinkComponent,

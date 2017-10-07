@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { UserDataService } from './user-data.service';
 import { ApiService } from './api.service';
+import { AuthService } from './auth/auth.service';
 import { ApiMockService } from './api-mock.service';
 import {
     MdButtonModule,
@@ -39,6 +40,7 @@ describe('AppComponent', () => {
                     provide: ApiService,
                     useClass: ApiMockService
                 },
+                AuthService,
             ],
             schemas: [
                 NO_ERRORS_SCHEMA
