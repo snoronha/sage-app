@@ -9,6 +9,7 @@ import {
     MdMenuModule,
     MdOptionModule,
     MdSelectModule,
+    MdSidenavModule,
     MdToolbarModule,
     MdIconModule,
     MdInputModule,
@@ -30,6 +31,7 @@ import { DiagramEditorComponent } from './diagram-editor/diagram-editor.componen
 import { User } from './data-model';
 import { HomeComponent } from './home/home.component';
 import { FastlinkComponent } from './fastlink/fastlink.component';
+import { FastlinkIframeComponent } from './fastlink-iframe/fastlink-iframe.component';
 
 @NgModule({
     imports: [
@@ -41,7 +43,7 @@ import { FastlinkComponent } from './fastlink/fastlink.component';
         ReactiveFormsModule,
         HttpModule,
         MdButtonModule, MdCheckboxModule, MdMenuModule, MdOptionModule,
-        MdSelectModule, MdToolbarModule, MdIconModule, MdInputModule,
+        MdSelectModule, MdSidenavModule, MdToolbarModule, MdIconModule, MdInputModule,
     ],
     declarations: [
         AppComponent,
@@ -54,6 +56,7 @@ import { FastlinkComponent } from './fastlink/fastlink.component';
         DiagramEditorComponent,
         HomeComponent,
         FastlinkComponent,
+        FastlinkIframeComponent,
     ],
     providers: [
         UserDataService,

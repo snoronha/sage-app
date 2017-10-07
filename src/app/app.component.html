@@ -1,26 +1,38 @@
-<md-toolbar color="basic" *ngIf="_router.url != '/fastlink'">
+<md-toolbar color="primary" *ngIf="_router.url != '/fastlink-iframe'">
   <button md-button routerLink="/">
-    <md-icon>home</md-icon>
-    {{title}}
+    <md-icon>home</md-icon>{{title}}
   </button>
-
   <span class="fill-remaining-space"></span>
   <div fxLayout="row" fxShow="false" fxShow.gt-sm>
-    <button md-button color="primary" routerLink="/editor">Editor</button>
-    <button md-button *ngIf="!auth.isAuthenticated()" (click)="auth.login()">Log In</button>
-    <button md-button *ngIf="auth.isAuthenticated()"  (click)="auth.logout()">Log Out</button>
-    <button md-button routerLink="/register">Register</button>
+    <button md-button [mdMenuTriggerFor]="navMenu">
+      <md-icon>settings</md-icon>
+    </button>
+    <md-menu #navMenu="mdMenu">
+      <button md-menu-item routerLink="/register">Register</button>
+      <button md-menu-item routerLink="/fastlink" *ngIf="auth.isAuthenticated()">Fastlink</button>
+      <button md-menu-item routerLink="/editor">Editor</button>
+    </md-menu>
+    <button md-button *ngIf="!auth.isAuthenticated()" (click)="auth.login()">
+      Log In
+    </button>
+    <button md-raised-button *ngIf="auth.isAuthenticated()" color="warn" (click)="auth.logout()">
+      Log Out
+      <md-icon>exit_to_app</md-icon>
+    </button>
   </div>
   <button md-button [md-menu-trigger-for]="menu" fxHide="false" fxHide.gt-sm>
     <md-icon>menu</md-icon>
   </button>
-
 </md-toolbar>
+
 <md-menu x-position="before" #menu="mdMenu">
   <button md-menu-item routerLink="/editor">Editor</button>
+  <button md-menu-item routerLink="/register">Register</button>
+  <button md-menu-item routerLink="/fastlink">Fastlink</button>
   <button md-menu-item *ngIf="!auth.isAuthenticated()" (click)="auth.login()">Log In</button>
   <button md-menu-item *ngIf="auth.isAuthenticated()"  (click)="auth.logout()">Log Out</button>
-  <button md-menu-item routerLink="/register">Register</button>
 </md-menu>
 <router-outlet></router-outlet>
+
+
 

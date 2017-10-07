@@ -1,20 +1,9 @@
-.diagramsPanel {
-    width:100%;
-    white-space:nowrap;
+.paletteDiv {
+    border: 1px solid #bfbfbf;
 }
 
 .diagramDiv {
-    border: 1px solid black;
-    display: inline-block;
-    vertical-align: top;
-    width: 80%;
-    height: 500px;
+    border: 1px solid #dfdfdf;
+    height: 600px;
 }
 
-.paletteDiv {
-    border: 1px solid black;
-    display: inline-block;
-    vertical-align: top;
-    width: 19%;
-    height: 500px;
-}
